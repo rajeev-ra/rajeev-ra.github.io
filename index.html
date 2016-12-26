@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <script src="./js/d3.min.js" charset="utf-8"></script>
+        <script src="./js/script.js"></script>
+        <script src="./js/jquery-3.1.1.js"></script>
+        <script src="./js/colordiv.js"></script>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+        <title>Draw</title>
+    </head>
+    <body>
+        <div id="whole" class="row">
+            <div class="col-fixed-60">   
+                <div id="button-1" class="button">Shapes</div>
+                <div id="button-2" class="button">Colors</div>
+                <div id="button-3" class="button">Rect</div>
+                <div id="button-4" class="button">Fill</div>
+                <div id="button-5" class="button">White</div>
+                <div id="button-6" class="button">Black</div>
+            </div>
+
+            <div class="col-md-12 col-offset-60">
+                <div class="row">
+                <iframe src="./drawboard.html" frameborder="0" style="overflow:hidden;height:100%;width:100%;z-index:2" height="100%" width="100%"></iframe>
+                </div>
+            </div>
+        </div>
+        <div id="shapeSelect" class="sub-menu-div" style="left:65px; top:5px; width:200px; height:100px"></div>
+        <div id="colorSelect" class="sub-menu-div" style="left:65px; top:45px; width:290px; height:195px"></div>
+        
+        <script>
+            $("#button-1").click(function(){
+                $("#shapeSelect").toggle();
+                ToggleCol(this);
+            });
+            $("#button-2").click(function(){
+                setColor = d3.select("#col_rect").style("fill");
+                $("#colorSelect").toggle();
+                ToggleCol(this);
+            });
+            function ToggleCol(b){
+                if($(b).data('sel') == 1){
+                    $(b).data('sel', 0);
+                    $(b).removeClass('button_active');
+                }
+                else{
+                    $(b).data('sel', 1);
+                    $(b).addClass('button_active');
+                }                
+            }
+            d3.select("#button-2").append("svg").attr("width", 60).attr("height", 60)
+                .on("contextmenu", function(d) {
+                    d3.event.preventDefault();
+                })
+                .on("mousedown", function (d) {
+                    d3.event.preventDefault();
+                }).append("rect").attr("id", "col_rect").attr("x", 20).attr("y", 10).attr("width", 20).attr("height", 20).style("fill","#000").style("stroke", "#000000").style("stroke-width", 1);
+
+            var clr = new ColorDiv("#colorSelect", function(col){
+                $("#colorSelect").toggle();
+                ToggleCol("#button-2");
+                d3.select("#col_rect").style("fill", col);
+            });
+        </script>
+    </body>
+</html>

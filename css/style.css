@@ -1,0 +1,48 @@
+body {
+    overflow:hidden;
+    padding:0px;
+    margin: 0px;
+    cursor: auto;
+}
+  
+.button{
+    border: 1px solid #73AD21;
+    border-top: 0px;
+    padding:0px;
+    margin:0px;
+    width: 60px;
+    height: 60px;
+    background-color: #afe2a2;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.button:hover {background-color: #3e8e41}
+.button:active {background-color: #2e7e31}
+.button_active {background-color: #2e7e31}
+
+.col-fixed-60{
+    width:60px;    
+    margin-left: 15px;
+    background:red;
+    position:fixed;
+    height:100%;
+}
+
+.col-offset-60{
+    margin-left:75px;
+    height:100%;
+    padding: 0px;
+}
+
+iframe {
+    position: fixed;
+    padding: 0px;
+}
+
+.sub-menu-div{
+    position: absolute;
+    display: none;
+    background: white;
+    z-index: 3;
+}
